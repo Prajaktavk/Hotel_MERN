@@ -4,7 +4,7 @@ const Navbar = () => {
 const user = JSON.parse(localStorage.getItem("currentUser"));
   function logout() {
     localStorage.removeItem("currentUser");
-    window.location.href = "/login";
+    window.location.href = "/";
   }
   return (
     <div>
@@ -46,7 +46,7 @@ const user = JSON.parse(localStorage.getItem("currentUser"));
                     <a class="dropdown-item" href="/profile">
                       Profile
                     </a>
-                    <a class="dropdown-item" onClick={logout}>
+                    <a class="dropdown-item"  onClick={logout}>
                       LogOut
                     </a>
                   </div>

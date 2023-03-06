@@ -57,11 +57,11 @@ const Registerscreen = () => {
         {loading && (<Loader/>) }
        
         {error && (<Error/>) }
-       
-        <div className="row justify-content-center mt-5">
         {success && (<Success message="Registration Sucess"/>)}
+        <div className="row justify-content-center mt-5">
+        
             <div className="col-md-6  mt-5">
-           
+            
 
                 <div className='bs'>
                     <h2>Register</h2>
