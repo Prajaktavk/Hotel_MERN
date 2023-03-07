@@ -15,7 +15,7 @@ console.log(room)
       {/* mt :margin top */}
      
         <div className="col-md-6">
-          <img src={room.imageurls[0]} width="400px"  height="300" />
+          <img src={room.imageurls[0]} width="400px"  height="300" alt="image pictures"/>
         </div>
         <div className="col-md-5">
           <h5>  {room.name}</h5>
@@ -52,7 +52,7 @@ console.log(room)
       <img
         className="d-block w-100 bigimg"
         src={url}
-     
+     alt="image details"
       />
 
     </Carousel.Item>

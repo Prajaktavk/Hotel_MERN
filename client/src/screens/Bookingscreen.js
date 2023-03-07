@@ -1,20 +1,22 @@
-import React from "react";
+import React,{ useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import moment from "moment";
 import StripeCheckout from "react-stripe-checkout";
 import swal from 'sweetalert';
 import  {useNavigate} from "react-router-dom";
+
 function Bookingscreen() {
   const [loading, setloading] = useState(true);
-  const navigate = useNavigate();
+  
   const [room, setroom] = useState();
   const [error, seterror] = useState();
 
-  let { id, fromdate, todate } = useParams();
+  const navigate = useNavigate();
+
+  let{ id, fromdate, todate } = useParams();
   
        
   const firstdate = moment(fromdate, "DD-MM-YYYY");
@@ -34,18 +36,20 @@ function Bookingscreen() {
         const data = (
           await axios.post("/api/rooms/getroombyid", { roomid: id })
         ).data;
+       
         settotalamount(data.rentperday * totaldays);
+        
         setroom(data);
         setloading(false);
-        console.log(data);
-      } catch (err) {
+        
+      } catch (error) {
         seterror(true);
-        console.log(err);
+        console.log(error);
         setloading(false);
       }
     };
     fetchData();
-  }, []);
+  });
 
   async function onToken(token) {
     console.log(token);
@@ -62,7 +66,7 @@ function Bookingscreen() {
       setloading(true);
       const result = await axios.post("/api/bookings/bookroom",bookingdetails);
       setloading(false);
-      swal("Congrulations","Your Booked Successfully",'success').then(result=>{
+      swal("Congrulations","Your Booked Successfully",'success').then( result=>{
         window.location.href='/profile'
         
       });
@@ -75,6 +79,7 @@ function Bookingscreen() {
   }
   return (
     <div className="m-5" >
+       
       {loading ? (
         <Loader />
       ) : room ? (
@@ -82,7 +87,7 @@ function Bookingscreen() {
           <div className="row justify-content-center mt-5 bs">
             <div className="col-md-6">
               <h1>{room.name}</h1>
-              <img src={room.imageurls[0]} className="bigimg" />
+              <img src={room.imageurls[0]} className="bigimg" alt="room details" />
             </div>
             <div className="col-md-6">
               <div style={{ textAlign: "right" }}>

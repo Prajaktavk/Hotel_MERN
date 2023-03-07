@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 import swal from "sweetalert";
 import Loader from "../components/Loader";
 import axios from "axios";
+import Error from "../components/Error";
 function Adminscreen() {
 
   
@@ -53,7 +54,7 @@ export function Bookings(){
   
   const [loading, setloading] = useState(false);
   const [bookings, setbookings] = useState();
-  const [error, seterror] = useState();
+  const [ error, seterror] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -83,7 +84,7 @@ export function Bookings(){
 
         <h1>Bookings</h1>
         {loading &&(<Loader/>)}
- 
+     
         <table className='table table-bordered table-dark'>
           <thead className='bs thead-dark'><tr>
             <th>Booking ID</th>
@@ -150,7 +151,7 @@ export function Rooms(){
 
         <h1>Rooms</h1>
         {loading &&(<Loader/>)}
- 
+        
         <table className='table table-bordered table-dark'>
           <thead className='bs thead-dark'><tr>
             <th>Room ID</th>
@@ -216,6 +217,7 @@ export function Rooms(){
       <div className='col-md-12'>
         <h1>Users</h1>
         {loading &&(<Loader/>)}
+
  
         <table className='table table-bordered table-dark'>
           <thead className='bs thead-dark'><tr>
@@ -301,7 +303,7 @@ export function AddRoom(){
     <div className='row'>
       <div className='col-md-5'>
       {loading &&(<Loader/>)}
- 
+     
       <input type="text" className="form-control"placeholder="room name"value={name}onChange={(e) => {setname(e.target.value)}}/>
       <input type="text" className="form-control"placeholder="rent per day"value={rentperday}onChange={(e) => {setrentperday(e.target.value)}}/>
       <input type="text" className="form-control"placeholder="facilities"value={facilities}onChange={(e) => {setfacilities(e.target.value)}}/>
